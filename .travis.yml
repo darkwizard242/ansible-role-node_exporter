@@ -2,9 +2,9 @@
 os: linux
 dist: bionic
 
-# language: python
-# python:
-#   - "3.7"
+language: python
+python:
+  - "3.7"
 
 services:
   - docker
@@ -28,7 +28,7 @@ services:
 before_install:
   - sudo apt-get update
   # - sudo apt-get upgrade -y
-  - sudo apt-get install curl wget software-properties-common -y
+  - sudo apt-get install wget software-properties-common -y
 
 install:
   - echo -e "deb [arch=amd64] https://download.virtualbox.org/virtualbox/debian bionic contrib" | sudo tee -a /etc/apt/sources.list.d/virtualbox.list
@@ -36,6 +36,7 @@ install:
   - wget -q https://www.virtualbox.org/download/oracle_vbox_2016.asc -O- | sudo apt-key add -
   - sudo apt-get update
   - sudo apt-get install virtualbox-6.1 -y
+  - sudo /sbin/vboxconfig
 
 
 #
