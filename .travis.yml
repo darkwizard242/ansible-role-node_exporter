@@ -36,7 +36,7 @@ install:
   - wget -q https://www.virtualbox.org/download/oracle_vbox_2016.asc -O- | sudo apt-key add -
   - sudo apt-get update
   - sudo apt-get install virtualbox-6.1 -y
-  - sudo /sbin/vboxconfig
+  # - sudo /sbin/vboxconfig
 
 
 #
@@ -46,8 +46,9 @@ install:
 #   - mv ansible-role-$ROLE_NAME darkwizard242.$ROLE_NAME
 #   - cd darkwizard242.$ROLE_NAME
 #
-# script:
-#   - sonar-scanner -Dsonar.projectVersion=$TRAVIS_BRANCH\_$TRAVIS_JOB_NUMBER
-#   - molecule test
+script:
+  - sudo /sbin/vboxconfig
+  # - sonar-scanner -Dsonar.projectVersion=$TRAVIS_BRANCH\_$TRAVIS_JOB_NUMBER
+  # - molecule test
 # notifications:
 #   webhooks: https://galaxy.ansible.com/api/v1/notifications/?branch=master
