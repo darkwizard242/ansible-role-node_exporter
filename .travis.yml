@@ -52,6 +52,8 @@ script:
   - sudo unzip vagrant_2.2.7_linux_amd64.zip -d /usr/local/bin/  &> /dev/null
   - sudo rm -rv vagrant_2.2.7_linux_amd64.zip
   - vagrant --version
+  - vagrant init ubuntu/xenial64
+  - vagrant up
   # - sonar-scanner -Dsonar.projectVersion=$TRAVIS_BRANCH\_$TRAVIS_JOB_NUMBER
   # - molecule test
 # notifications:
