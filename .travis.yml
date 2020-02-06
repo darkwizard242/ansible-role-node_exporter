@@ -28,7 +28,7 @@ services:
 before_install:
   - sudo apt-get update
   # - sudo apt-get upgrade -y
-  - sudo apt-get install wget software-properties-common linux-headers-5.0.0-1026-gcp -y
+  - sudo apt-get install wget unzip software-properties-common linux-headers-5.0.0-1026-gcp -y
 
 install:
   - echo -e "deb [arch=amd64] https://download.virtualbox.org/virtualbox/debian bionic contrib" | sudo tee -a /etc/apt/sources.list.d/virtualbox.list
@@ -48,6 +48,9 @@ install:
 #
 script:
   - sudo /sbin/vboxconfig
+  - sudo wget https://releases.hashicorp.com/vagrant/2.2.7/vagrant_2.2.7_linux_amd64.zip &> /dev/null
+  - sudo unzip vagrant_2.2.7_linux_amd64.zip -d /usr/local/bin/  &> /dev/null && rm -rv vagrant_2.2.7_linux_amd64.zip
+  - vagrant --version
   # - sonar-scanner -Dsonar.projectVersion=$TRAVIS_BRANCH\_$TRAVIS_JOB_NUMBER
   # - molecule test
 # notifications:
