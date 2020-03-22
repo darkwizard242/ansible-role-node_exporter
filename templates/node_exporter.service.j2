@@ -7,7 +7,7 @@ After=network-online.target
 User={{ node_exporter_app_user }}
 Group={{ node_exporter_app_group }}
 Type=simple
-ExecStart={{ node_exporter_bin_path }}/{{ {{ node_exporter_app }} }} --collector.systemd --collector.processes --collector.mountstats
+ExecStart={{ node_exporter_bin_path }}/{{ node_exporter_app }} --collector.systemd --collector.processes --collector.mountstats
 
 [Install]
 WantedBy=multi-user.target
