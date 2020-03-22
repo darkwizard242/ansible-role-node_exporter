@@ -2,8 +2,32 @@
 # defaults file for node_exporter
 
 node_exporter_app: node_exporter
+node_exporter_app_group: "{{ node_exporter_app }}"
+node_exporter_app_group_desired_state: present
+node_exporter_app_user: "{{ node_exporter_app }}"
+node_exporter_app_user_desired_state: present
+node_exporter_app_user_home_state: no
+node_exporter_app_user_shell: /bin/false
 node_exporter_version: 0.18.1
 node_exporter_osarch: linux-amd64
-node_exporter_dl_url: https://github.com/prometheus/{{ node_exporter_app }}/releases/download/v{{ node_exporter_version }}/{{ node_exporter_app }}-{{ node_exporter_version }}.{{ node_exporter_osarch }}.tar.gz
-node_exporter_dl_loc: /tmp
+node_exporter_dl_url: "https://github.com/prometheus/{{ node_exporter_app }}/releases/download/v{{ node_exporter_version }}/{{ node_exporter_app }}-{{ node_exporter_version }}.{{ node_exporter_osarch }}.tar.gz"
+node_exporter_dl_loc: "/tmp/{{ node_exporter_app }}.tar.gz"
+node_exporter_temp_extract_path: /tmp
+node_exporter_temp_extract_path_mode: 0755
+node_exporter_temp_extract_path_remote_src: true
 node_exporter_bin_path: /usr/local/bin
+node_exporter_bin_path_mode: 0755
+node_exporter_bin_path_remote_src: true
+node_exporter_systemd_service_template: "{{ node_exporter_app }}.service.j2"
+node_exporter_service_name: "{{ node_exporter_app }}"
+node_exporter_systemd_service_template_dest: "/etc/systemd/system/{{ node_exporter_app }}.service"
+node_exporter_systemd_service_template_user: root
+node_exporter_systemd_service_template_group: root
+node_exporter_systemd_service_template_dest_mode: 0644
+node_exporter_systemd_service_template_backup: yes
+node_exporter_service_desired_state: restarted
+node_exporter_service_desired_boot_enabled: yes
+node_exporter_app_port: 9100
+node_exporter_app_check_status_code: 200
+node_exporter_app_check_status_code_retries: 10
+node_exporter_app_check_status_code_delay: 5
