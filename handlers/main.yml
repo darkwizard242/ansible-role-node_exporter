@@ -1,15 +1,15 @@
 ---
 # handlers file for {{ node_exporter_app }}
 
-- name: "set_{{ node_exporter_service_name }}_service_state"
+- name: "set_{{ node_exporter_systemd_service_name }}_service_state"
   service:
-    name: "{{ node_exporter_service_name }}"
-    state: "{{ node_exporter_service_desired_state }}"
+    name: "{{ node_exporter_systemd_service_name }}"
+    state: "{{ node_exporter_systemd_service_desired_state }}"
 
-- name: "set_{{ node_exporter_service_name }}_service_boot_state"
+- name: "set_{{ node_exporter_systemd_service_name }}_service_boot_state"
   service:
-    name: "{{ node_exporter_service_name }}"
-    enabled: "{{ node_exporter_service_desired_boot_enabled }}"
+    name: "{{ node_exporter_systemd_service_name }}"
+    enabled: "{{ node_exporter_systemd_service_desired_boot_enabled }}"
 
 - name: "check_{{ node_exporter_app }}_url"
   uri:
