@@ -1,0 +1,16 @@
+---
+# tasks file for node_exporter - Debian/Ubuntu Family
+
+- name: Debian/Ubuntu Family | Downloading and extracting {{ node_exporter_app }} {{ node_exporter_version }}
+  unarchive:
+    src: "{{ node_exporter_dl_url }}"
+    dest: "{{ node_exporter_bin_path }}"
+    extra_opts:
+      # - --transform
+      # - s/{{ node_exporter_app }}\-{{ node_exporter_version }}\.{{ node_exporter_osarch }}/{{ node_exporter_app }}/
+      - {{ node_exporter_app }}
+    remote_src: yes
+  notify:
+    - "set_{{ node_exporter_service_name }}_service_state"
+    - "set_{{ node_exporter_service_name }}_service_boot_state"
+    - "check_{{ node_exporter_app }}_url"
