@@ -37,6 +37,7 @@ install:
   - sudo apt-get update
   - sudo apt-get install virtualbox-6.1 -y
   # - sudo /sbin/vboxconfig
+  - pip3 install molecule docker ansible-lint flake8 testinfra molecule-vagrant
 
 
 #
