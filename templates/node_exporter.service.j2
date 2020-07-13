@@ -10,7 +10,11 @@ After=network-online.target
 User={{ node_exporter_app_user }}
 Group={{ node_exporter_app_group }}
 Type=simple
-ExecStart={{ node_exporter_bin_path }}/{{ node_exporter_app }} --collector.systemd --collector.processes --collector.mountstats
+{% if node_exporter_systemd_service_flags is defined and node_exporter_systemd_service_flags|length %}
+ExecStart={{ node_exporter_bin_path }}/{{ node_exporter_app }} {{ node_exporter_systemd_service_flags }}
+{% else %}
+ExecStart={{ node_exporter_bin_path }}/{{ node_exporter_app }}
+{% endif %}
 StandardOutput=syslog
 StandardError=syslog
 SyslogIdentifier={{ node_exporter_app }}
