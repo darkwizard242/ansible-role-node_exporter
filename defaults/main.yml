@@ -22,6 +22,7 @@ node_exporter_bin_path_mode: 0755
 node_exporter_bin_path_remote_src: yes
 
 node_exporter_systemd_service_name: "{{ node_exporter_app }}"
+node_exporter_systemd_service_flags: --collector.systemd --collector.processes --collector.mountstats
 node_exporter_systemd_service_template: "{{ node_exporter_app }}.service.j2"
 node_exporter_systemd_service_template_dest: "/etc/systemd/system/{{ node_exporter_app }}.service"
 node_exporter_systemd_service_template_user: "{{ node_exporter_app_user }}"
