@@ -1,3 +1,6 @@
+# Management: {{ ansible_managed }}
+# Date modified: {{ template_run_date }}
+
 [Unit]
 Description={{ node_exporter_app }} - exporter for node/machine metrics.
 Wants=network-online.target
@@ -8,6 +11,9 @@ User={{ node_exporter_app_user }}
 Group={{ node_exporter_app_group }}
 Type=simple
 ExecStart={{ node_exporter_bin_path }}/{{ node_exporter_app }} --collector.systemd --collector.processes --collector.mountstats
+StandardOutput=syslog
+StandardError=syslog
+SyslogIdentifier={{ node_exporter_app }}
 
 [Install]
 WantedBy=multi-user.target
