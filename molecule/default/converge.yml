@@ -3,4 +3,4 @@
   hosts: all
   become: yes
   roles:
-    - role: ansible-role-node_exporter
+    - role: darkwizard242.node_exporter
