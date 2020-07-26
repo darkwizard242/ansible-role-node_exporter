@@ -6,10 +6,6 @@ testinfra_hosts = testinfra.utils.ansible_runner.AnsibleRunner(
     os.environ['MOLECULE_INVENTORY_FILE']).get_hosts('all')
 
 
-def test_node_exporter_package_installed(host):
-    assert host.package("google-cloud-sdk").is_installed
-
-
 def test_node_exporter_binary_exists(host):
     host.file('/usr/local/bin/node_exporter').exists
 
