@@ -26,8 +26,8 @@ node_exporter_systemd_service_name: "{{ node_exporter_app }}"
 node_exporter_systemd_service_flags: --collector.systemd --collector.processes --collector.mountstats
 node_exporter_systemd_service_template: "{{ node_exporter_app }}.service.j2"
 node_exporter_systemd_service_template_dest: "/etc/systemd/system/{{ node_exporter_app }}.service"
-node_exporter_systemd_service_template_user: "{{ node_exporter_app_user }}"
-node_exporter_systemd_service_template_group: "{{ node_exporter_app_group }}"
+node_exporter_systemd_service_template_user: root
+node_exporter_systemd_service_template_group: root
 node_exporter_systemd_service_template_dest_mode: 0644
 node_exporter_systemd_service_template_backup: yes
 node_exporter_systemd_service_desired_state: restarted
