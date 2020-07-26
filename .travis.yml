@@ -40,12 +40,12 @@ install:
   - pip3 install molecule docker ansible-lint flake8 testinfra molecule-vagrant
 
 
-#
-# before_script:
-#   # Rename project directory to actual Ansible Galaxy role name and switch to it.
-#   - cd ../
-#   - mv ansible-role-$ROLE_NAME darkwizard242.$ROLE_NAME
-#   - cd darkwizard242.$ROLE_NAME
+
+before_script:
+  # Rename project directory to actual Ansible Galaxy role name and switch to it.
+  - cd ../
+  - mv ansible-role-$ROLE_NAME darkwizard242.$ROLE_NAME
+  - cd darkwizard242.$ROLE_NAME
 #
 script:
   - sudo /sbin/vboxconfig
