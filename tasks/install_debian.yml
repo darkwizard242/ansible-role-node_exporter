@@ -36,6 +36,16 @@
     group: "{{ node_exporter_app_group }}"
     mode: "{{ node_exporter_bin_path_mode }}"
     backup: yes
+
+ - name: "Setup and verify {{ systemd_service_path }}/{{ systemd_service_name }}}"
+   template:
+     src: "{{ node_exporter_systemd_service_template }}"
+     dest: "{{ node_exporter_systemd_service_template_dest }}"
+     owner: "{{ node_exporter_systemd_service_template_user }}"
+     group: "{{ node_exporter_systemd_service_template_group }}"
+     mode: "{{ node_exporter_systemd_service_template_dest_mode }}"
+     validate: "/usr/bin/systemd-analyze verify {{ node_exporter_systemd_service_template_dest }} %s"
+     backup: "{{ node_exporter_systemd_service_template_backup }}"
   # notify:
   #   - "set_{{ node_exporter_systemd_service_name }}_service_state"
   #   - "set_{{ node_exporter_systemd_service_name }}_service_boot_state"
