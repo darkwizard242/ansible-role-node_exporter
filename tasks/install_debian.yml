@@ -37,7 +37,7 @@
     mode: "{{ node_exporter_bin_path_mode }}"
     backup: yes
 
- - name: "Setup and verify {{ systemd_service_path }}/{{ systemd_service_name }}}"
+ - name: "Setup and verify {{ node_exporter_systemd_service_template_dest }}}"
    template:
      src: "{{ node_exporter_systemd_service_template }}"
      dest: "{{ node_exporter_systemd_service_template_dest }}"
