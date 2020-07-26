@@ -13,7 +13,7 @@ env:
   global:
     - ROLE_NAME: node_exporter
     - VAGRANT_VERSION: 2.2.9
-    - VAGRANT_OS_ARCH: {VAGRANT_OS_ARCH}
+    - VAGRANT_OS_ARCH: linux_amd64
   jobs:
     # - DISTRO: centos-8
     # - DISTRO: centos-7
