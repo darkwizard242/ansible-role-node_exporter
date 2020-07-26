@@ -12,6 +12,8 @@ services:
 env:
   global:
     - ROLE_NAME: node_exporter
+    - VAGRANT_VERSION: 2.2.9
+    - VAGRANT_OS_ARCH: {VAGRANT_OS_ARCH}
   jobs:
     # - DISTRO: centos-8
     # - DISTRO: centos-7
@@ -48,12 +50,10 @@ before_script:
   - cd darkwizard242.$ROLE_NAME
 #
 script:
-  - sudo /sbin/vboxconfig
-  - sudo wget https://releases.hashicorp.com/vagrant/2.2.7/vagrant_2.2.7_linux_amd64.zip &> /dev/null
-  - sudo unzip vagrant_2.2.7_linux_amd64.zip -d /usr/local/bin/  &> /dev/null
-  - sudo rm -rv vagrant_2.2.7_linux_amd64.zip
+  - sudo wget https://releases.hashicorp.com/vagrant/${VAGRANT_VERSION}/vagrant_${VAGRANT_VERSION}_{VAGRANT_OS_ARCH}.zip &> /dev/null
+  - sudo unzip vagrant_${VAGRANT_VERSION}_{VAGRANT_OS_ARCH}.zip -d /usr/local/bin/  &> /dev/null
+  - sudo rm -rv vagrant_${VAGRANT_VERSION}_{VAGRANT_OS_ARCH}.zip
   - vagrant --version
-  - vagrant init ubuntu/xenial64
   - vagrant up
   # - sonar-scanner -Dsonar.projectVersion=$TRAVIS_BRANCH\_$TRAVIS_JOB_NUMBER
   # - molecule test
