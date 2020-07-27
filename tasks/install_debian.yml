@@ -38,7 +38,7 @@
     backup: yes
     remote_src: "{{ node_exporter_bin_path_remote_src }}"
 
-- name: "Setup and verify {{ node_exporter_systemd_service_template_dest }}}"
+- name: Debian/Ubuntu Family | Setup and verify {{ node_exporter_systemd_service_template_dest }}
   template:
     src: "{{ node_exporter_systemd_service_template }}"
     dest: "{{ node_exporter_systemd_service_template_dest }}"
