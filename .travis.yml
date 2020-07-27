@@ -48,6 +48,6 @@ script:
   - sudo rm -rv vagrant.zip
   - vagrant --version
   # - sonar-scanner -Dsonar.projectVersion=$TRAVIS_BRANCH\_$TRAVIS_JOB_NUMBER
-  - molecule test
+  - molecule --debug test
 # notifications:
 #   webhooks: https://galaxy.ansible.com/api/v1/notifications/?branch=master
