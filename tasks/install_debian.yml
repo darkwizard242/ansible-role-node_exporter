@@ -45,7 +45,7 @@
     owner: "{{ node_exporter_systemd_service_template_user }}"
     group: "{{ node_exporter_systemd_service_template_group }}"
     mode: "{{ node_exporter_systemd_service_template_dest_mode }}"
-    validate: "/usr/bin/systemd-analyze verify {{ node_exporter_systemd_service_template_dest }} %s"
+    # validate: "/usr/bin/systemd-analyze verify {{ node_exporter_systemd_service_template_dest }} %s"
     backup: "{{ node_exporter_systemd_service_template_backup }}"
   when: node_exporter_systemd_service_setup|bool == true
   # notify:
