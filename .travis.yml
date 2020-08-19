@@ -1,6 +1,6 @@
 ---
 os: linux
-dist: bionic
+dist: focal
 
 language: python
 python:
@@ -29,12 +29,12 @@ before_install:
   - sudo apt-get install wget unzip software-properties-common linux-headers-$(uname -r) -y
 
 install:
-  - echo -e "deb [arch=amd64] https://download.virtualbox.org/virtualbox/debian bionic contrib" | sudo tee -a /etc/apt/sources.list.d/virtualbox.list
+  - echo -e "deb [arch=amd64] https://download.virtualbox.org/virtualbox/debian $(lsb_release -cs) contrib" | sudo tee -a /etc/apt/sources.list.d/virtualbox.list
   - wget -q https://www.virtualbox.org/download/oracle_vbox_2016.asc -O- | sudo apt-key add -
   - sudo apt-get update
   - sudo apt-get install virtualbox-6.1 -y
   - sudo /sbin/vboxconfig
-  - pip3 install molecule docker ansible-lint flake8 testinfra molecule-vagrant
+  - pip3 install molecule==3.0.6 docker ansible-lint flake8 testinfra molecule-vagrant
 
 before_script:
   # Rename project directory to actual Ansible Galaxy role name and switch to it.
