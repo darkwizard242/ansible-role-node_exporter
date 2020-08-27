@@ -38,7 +38,7 @@
     backup: yes
     remote_src: "{{ node_exporter_bin_path_remote_src }}"
 
-- name: Debian/Ubuntu Family | Setup and verify {{ node_exporter_systemd_service_template_dest }}
+- name: Debian/Ubuntu Family | Setup {{ node_exporter_systemd_service_template_dest }}
   template:
     src: "{{ node_exporter_systemd_service_template }}"
     dest: "{{ node_exporter_systemd_service_template_dest }}"
@@ -47,7 +47,7 @@
     mode: "{{ node_exporter_systemd_service_template_dest_mode }}"
     # validate: "/usr/bin/systemd-analyze verify {{ node_exporter_systemd_service_template_dest }} %s"
     backup: "{{ node_exporter_systemd_service_template_backup }}"
-  when: node_exporter_systemd_service_setup|bool == true
+  when: node_exporter_systemd_service_setup
   # notify:
   #   - "set_{{ node_exporter_systemd_service_name }}_service_state"
   #   - "set_{{ node_exporter_systemd_service_name }}_service_boot_state"
