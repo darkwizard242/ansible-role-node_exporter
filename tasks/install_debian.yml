@@ -48,7 +48,7 @@
     # validate: "/usr/bin/systemd-analyze verify {{ node_exporter_systemd_service_template_dest }} %s"
     backup: "{{ node_exporter_systemd_service_template_backup }}"
   when: node_exporter_systemd_service_setup
-  # notify:
-  #   - "set_{{ node_exporter_systemd_service_name }}_service_state"
-  #   - "set_{{ node_exporter_systemd_service_name }}_service_boot_state"
-  #   - "check_{{ node_exporter_app }}_url"
+  notify:
+    - "set_{{ node_exporter_systemd_service_name }}_service_state"
+    - "set_{{ node_exporter_systemd_service_name }}_service_boot_state"
+    - "check_{{ node_exporter_app }}_url"
