@@ -18,7 +18,7 @@ node_exporter_app_user_shell: /bin/false
 node_exporter_temp_path: /tmp
 
 node_exporter_bin_path: /usr/local/bin
-node_exporter_bin_path_mode: 0755
+node_exporter_bin_path_mode: '0755'
 node_exporter_bin_path_remote_src: yes
 
 node_exporter_systemd_service_setup: true
@@ -28,7 +28,7 @@ node_exporter_systemd_service_template: "{{ node_exporter_app }}.service.j2"
 node_exporter_systemd_service_template_dest: "/etc/systemd/system/{{ node_exporter_app }}.service"
 node_exporter_systemd_service_template_user: root
 node_exporter_systemd_service_template_group: root
-node_exporter_systemd_service_template_dest_mode: 0644
+node_exporter_systemd_service_template_dest_mode: '0644'
 node_exporter_systemd_service_template_backup: yes
 node_exporter_systemd_service_desired_state: restarted
 node_exporter_systemd_service_desired_boot_enabled: yes
