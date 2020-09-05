@@ -18,9 +18,9 @@ env:
     - DISTRO: debian10
     - DISTRO: debian9
 
-# addons:
-#   sonarcloud:
-#     organization: "tech-overlord-github"
+addons:
+  sonarcloud:
+    organization: "tech-overlord-github"
 
 before_install:
   - sudo apt-get update
@@ -46,7 +46,7 @@ script:
   - sudo unzip vagrant.zip -d /usr/local/bin/  &> /dev/null
   - sudo rm -rv vagrant.zip
   - vagrant --version
-  # - sonar-scanner -Dsonar.projectVersion=$TRAVIS_BRANCH\_$TRAVIS_JOB_NUMBER
+  - sonar-scanner -Dsonar.projectVersion=$TRAVIS_BRANCH\_$TRAVIS_JOB_NUMBER
   - molecule test
 # notifications:
 #   webhooks: https://galaxy.ansible.com/api/v1/notifications/?branch=master
