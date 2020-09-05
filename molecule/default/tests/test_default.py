@@ -8,6 +8,7 @@ testinfra_hosts = testinfra.utils.ansible_runner.AnsibleRunner(
 
 NODE_EXPORTER_USER = "node_exporter"
 NODE_EXPORTER_GROUP = "node_exporter"
+NODE_EXPORTER_HOME = "/bin/false"
 NODE_EXPORTER_BINARY_FILE = "/usr/local/bin/node_exporter"
 NODE_EXPORTER_SERVICE_FILE = "/etc/systemd/system/node_exporter.service"
 NODE_EXPORTER_SERVICE_NAME = "node_exporter"
@@ -22,7 +23,7 @@ def test_node_exporter_group_check(host):
 
 
 def test_node_exporter_home_check(host):
-    host.user(NODE_EXPORTER_USER).home == '/bin/false'
+    host.user(NODE_EXPORTER_USER).home == NODE_EXPORTER_HOME
 
 
 def test_node_exporter_binary_exists(host):
