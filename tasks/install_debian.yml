@@ -27,6 +27,7 @@
     extra_opts:
       - --strip-components=1
     remote_src: "{{ node_exporter_bin_path_remote_src }}"
+    mode: '0755'
 
 - name: Debian/Ubuntu Family | Moving {{ node_exporter_app }} to {{ node_exporter_bin_path }}
   copy:
@@ -35,7 +36,6 @@
     owner: "{{ node_exporter_app_user }}"
     group: "{{ node_exporter_app_group }}"
     mode: "{{ node_exporter_bin_path_mode }}"
-    backup: yes
     remote_src: "{{ node_exporter_bin_path_remote_src }}"
 
 - name: Debian/Ubuntu Family | Setup {{ node_exporter_systemd_service_template_dest }}
@@ -45,7 +45,7 @@
     owner: "{{ node_exporter_systemd_service_template_user }}"
     group: "{{ node_exporter_systemd_service_template_group }}"
     mode: "{{ node_exporter_systemd_service_template_dest_mode }}"
-    # validate: "/usr/bin/systemd-analyze verify {{ node_exporter_systemd_service_template_dest }} %s"
+    validate: "/usr/bin/systemd-analyze verify {{ node_exporter_systemd_service_template_dest }} %s"
     backup: "{{ node_exporter_systemd_service_template_backup }}"
   when: node_exporter_systemd_service_setup
   notify:
