@@ -19,11 +19,11 @@ def test_node_exporter_user_exists(host):
 
 
 def test_node_exporter_group_check(host):
-    host.user(NODE_EXPORTER_USER).group == NODE_EXPORTER_GROUP
+    host.user(NODE_EXPORTER_USER).group == 'node_exporter'
 
 
 def test_node_exporter_home_check(host):
-    host.user(NODE_EXPORTER_USER).home == NODE_EXPORTER_HOME
+    host.user(NODE_EXPORTER_USER).home == '/bin/false'
 
 
 def test_node_exporter_binary_exists(host):
