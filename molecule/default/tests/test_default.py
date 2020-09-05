@@ -6,6 +6,14 @@ testinfra_hosts = testinfra.utils.ansible_runner.AnsibleRunner(
     os.environ['MOLECULE_INVENTORY_FILE']).get_hosts('all')
 
 
+def test_node_exporter_group_exists(host):
+    host.user('node_exporter').exists
+
+
+def test_node_exporter_group_check(host):
+    host.user('node_exporter').group == 'node_exporter'
+
+
 def test_node_exporter_binary_exists(host):
     host.file('/usr/local/bin/node_exporter').exists
 
