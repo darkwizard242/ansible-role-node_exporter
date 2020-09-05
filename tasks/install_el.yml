@@ -1,0 +1,55 @@
+---
+# tasks file for node_exporter - EL Family
+
+- name: EL Family | Add group {{ node_exporter_app_group }} for {{ node_exporter_app }} application
+  group:
+    name: "{{ node_exporter_app_group }}"
+    state: "{{ node_exporter_app_group_desired_state }}"
+
+- name: EL Family | Add user {{ node_exporter_app_user }} for {{ node_exporter_app }} application
+  user:
+    name: "{{ node_exporter_app_user }}"
+    comment: Node Exporter User
+    group: "{{ node_exporter_app_group }}"
+    create_home: "{{ node_exporter_app_user_home_state }}"
+    shell: "{{ node_exporter_app_user_shell }}"
+    state: "{{ node_exporter_app_user_desired_state }}"
+
+- name: EL Family | Downloading {{ node_exporter_app }} {{ node_exporter_version }}
+  get_url:
+    url: "{{ node_exporter_dl_url }}"
+    dest: "{{ node_exporter_temp_path }}/{{ node_exporter_app }}-{{ node_exporter_version }}.{{ node_exporter_osarch }}.{{ node_exporter_archive_format }}"
+
+- name: EL Family | Extracting {{ node_exporter_app }} {{ node_exporter_version }}
+  unarchive:
+    src: "{{ node_exporter_temp_path }}/{{ node_exporter_app }}-{{ node_exporter_version }}.{{ node_exporter_osarch }}.{{ node_exporter_archive_format }}"
+    dest: "{{ node_exporter_temp_path }}/"
+    # extra_opts:
+    #   - --strip-components=1
+    remote_src: "{{ node_exporter_bin_path_remote_src }}"
+    mode: '0755'
+
+
+- name: EL Family | Moving {{ node_exporter_app }} to {{ node_exporter_bin_path }}
+  copy:
+    src: "{{ node_exporter_temp_path }}/{{ node_exporter_app }}-{{ node_exporter_version }}.{{ node_exporter_osarch }}/{{ node_exporter_app }}"
+    dest: "{{ node_exporter_bin_path }}"
+    owner: "{{ node_exporter_app_user }}"
+    group: "{{ node_exporter_app_group }}"
+    mode: "{{ node_exporter_bin_path_mode }}"
+    remote_src: "{{ node_exporter_bin_path_remote_src }}"
+
+- name: EL Family | Setup {{ node_exporter_systemd_service_template_dest }}
+  template:
+    src: "{{ node_exporter_systemd_service_template }}"
+    dest: "{{ node_exporter_systemd_service_template_dest }}"
+    owner: "{{ node_exporter_systemd_service_template_user }}"
+    group: "{{ node_exporter_systemd_service_template_group }}"
+    mode: "{{ node_exporter_systemd_service_template_dest_mode }}"
+    # validate: "/usr/bin/systemd-analyze verify {{ node_exporter_systemd_service_template_dest }} %s"
+    backup: "{{ node_exporter_systemd_service_template_backup }}"
+  when: node_exporter_systemd_service_setup
+  notify:
+    - "set_{{ node_exporter_systemd_service_name }}_service_state"
+    - "set_{{ node_exporter_systemd_service_name }}_service_boot_state"
+    - "check_{{ node_exporter_app }}_url"

@@ -1,0 +1,6 @@
+---
+- name: Converge
+  hosts: all
+  become: yes
+  roles:
+    - role: darkwizard242.node_exporter

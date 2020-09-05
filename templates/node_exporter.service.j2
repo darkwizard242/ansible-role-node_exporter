@@ -1,0 +1,22 @@
+# Management: {{ ansible_managed }}
+
+[Unit]
+Description={{ node_exporter_app }} - exporter for node/machine metrics.
+Wants=network-online.target
+After=network-online.target
+
+[Service]
+User={{ node_exporter_app_user }}
+Group={{ node_exporter_app_group }}
+Type=simple
+{% if node_exporter_systemd_service_flags is defined and node_exporter_systemd_service_flags|length %}
+ExecStart={{ node_exporter_bin_path }}/{{ node_exporter_app }} {{ node_exporter_systemd_service_flags }}
+{% else %}
+ExecStart={{ node_exporter_bin_path }}/{{ node_exporter_app }}
+{% endif %}
+StandardOutput=syslog
+StandardError=syslog
+SyslogIdentifier={{ node_exporter_app }}
+
+[Install]
+WantedBy=multi-user.target
