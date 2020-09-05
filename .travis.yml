@@ -12,7 +12,7 @@ env:
     - VAGRANT_VERSION: 2.2.9
   jobs:
     # - DISTRO: centos-8
-    - DISTRO: centos-7
+    - DISTRO: centos7
     - DISTRO: ubuntu2004
     - DISTRO: ubuntu1804
     - DISTRO: ubuntu1604
