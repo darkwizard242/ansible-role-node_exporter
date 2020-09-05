@@ -21,3 +21,7 @@ def test_node_exporter_binary_which(host):
 
 def test_node_exporter_service_is_enabled(host):
     assert host.service('node_exporter').is_enabled
+
+
+def test_node_exporter_service_is_running(host):
+    assert host.service('node_exporter').is_running
