@@ -19,6 +19,10 @@ def test_node_exporter_binary_which(host):
       '/usr/local/bin/node_exporter'
 
 
+def test_node_exporter_service_file_exists(host):
+    host.file('/etc/systemd/system/node_exporter.service').exists
+
+
 def test_node_exporter_service_is_enabled(host):
     assert host.service('node_exporter').is_enabled
 
