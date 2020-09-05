@@ -17,3 +17,7 @@ def test_node_exporter_binary_isfile(host):
 def test_node_exporter_binary_which(host):
     assert host.check_output('which node_exporter') == \
       '/usr/local/bin/node_exporter'
+
+
+def test_node_exporter_service_is_enabled(host):
+    assert host.service('node_exporter').is_enabled
