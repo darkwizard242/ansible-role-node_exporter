@@ -14,6 +14,10 @@ def test_node_exporter_group_check(host):
     host.user('node_exporter').group == 'node_exporter'
 
 
+def test_node_exporter_home_check(host):
+    host.user('node_exporter').home == '/bin/false'
+
+
 def test_node_exporter_binary_exists(host):
     host.file('/usr/local/bin/node_exporter').exists
 
