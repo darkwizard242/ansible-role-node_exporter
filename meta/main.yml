@@ -1,7 +1,7 @@
 ---
 galaxy_info:
   role_name: node_exporter
-  author: Ali Muhammad
+  author: darkwizard242
   description: Installs & configures 'node_exporter' for scraping node metrics.
   company: none
   license: MIT
