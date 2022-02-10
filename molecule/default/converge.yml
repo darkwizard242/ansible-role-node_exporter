@@ -4,3 +4,5 @@
   become: yes
   roles:
     - role: darkwizard242.node_exporter
+  vars:
+    ansible_python_interpreter: /usr/bin/python3
