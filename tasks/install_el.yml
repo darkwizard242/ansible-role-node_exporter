@@ -2,12 +2,12 @@
 # tasks file for node_exporter - EL Family
 
 - name: EL Family | Add group {{ node_exporter_app_group }} for {{ node_exporter_app }} application
-  group:
+  ansible.builtin.group:
     name: "{{ node_exporter_app_group }}"
     state: "{{ node_exporter_app_group_desired_state }}"
 
 - name: EL Family | Add user {{ node_exporter_app_user }} for {{ node_exporter_app }} application
-  user:
+  ansible.builtin.user:
     name: "{{ node_exporter_app_user }}"
     comment: Node Exporter User
     group: "{{ node_exporter_app_group }}"
@@ -16,12 +16,12 @@
     state: "{{ node_exporter_app_user_desired_state }}"
 
 - name: EL Family | Downloading {{ node_exporter_app }} {{ node_exporter_version }}
-  get_url:
+  ansible.builtin.get_url:
     url: "{{ node_exporter_dl_url }}"
     dest: "{{ node_exporter_temp_path }}/{{ node_exporter_app }}-{{ node_exporter_version }}.{{ node_exporter_osarch }}.{{ node_exporter_archive_format }}"
 
 - name: EL Family | Extracting {{ node_exporter_app }} {{ node_exporter_version }}
-  unarchive:
+  ansible.builtin.unarchive:
     src: "{{ node_exporter_temp_path }}/{{ node_exporter_app }}-{{ node_exporter_version }}.{{ node_exporter_osarch }}.{{ node_exporter_archive_format }}"
     dest: "{{ node_exporter_temp_path }}/"
     # extra_opts:
@@ -31,7 +31,7 @@
 
 
 - name: EL Family | Moving {{ node_exporter_app }} to {{ node_exporter_bin_path }}
-  copy:
+  ansible.builtin.copy:
     src: "{{ node_exporter_temp_path }}/{{ node_exporter_app }}-{{ node_exporter_version }}.{{ node_exporter_osarch }}/{{ node_exporter_app }}"
     dest: "{{ node_exporter_bin_path }}"
     owner: "{{ node_exporter_app_user }}"
@@ -40,7 +40,7 @@
     remote_src: "{{ node_exporter_bin_path_remote_src }}"
 
 - name: EL Family | Setup {{ node_exporter_systemd_service_template_dest }}
-  template:
+  ansible.builtin.template:
     src: "{{ node_exporter_systemd_service_template }}"
     dest: "{{ node_exporter_systemd_service_template_dest }}"
     owner: "{{ node_exporter_systemd_service_template_user }}"
