@@ -2,19 +2,19 @@
 # handlers file for {{ node_exporter_app }}
 
 - name: "set_{{ node_exporter_systemd_service_name }}_service_state"
-  systemd:
+  ansible.builtin.systemd:
     name: "{{ node_exporter_systemd_service_name }}"
     state: "{{ node_exporter_systemd_service_desired_state }}"
     daemon_reload: yes
 
 - name: "set_{{ node_exporter_systemd_service_name }}_service_boot_state"
-  systemd:
+  ansible.builtin.systemd:
     name: "{{ node_exporter_systemd_service_name }}"
     enabled: "{{ node_exporter_systemd_service_desired_boot_enabled }}"
     daemon_reload: yes
 
 - name: "check_{{ node_exporter_app }}_url"
-  uri:
+  ansible.builtin.uri:
     url: "http://localhost:{{ node_exporter_app_port }}"
     status_code: "{{ node_exporter_app_check_status_code }}"
   retries: "{{ node_exporter_app_check_status_code_retries }}"
