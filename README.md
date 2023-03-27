@@ -18,7 +18,7 @@ Available variables are listed below (located in `defaults/main.yml`):
 
 ```yaml
 node_exporter_app: node_exporter
-node_exporter_version: 1.3.1
+node_exporter_version: 1.5.0
 node_exporter_osarch: linux-amd64
 node_exporter_archive_format: tar.gz
 node_exporter_dl_url: "https://github.com/prometheus/{{ node_exporter_app }}/releases/download/v{{ node_exporter_version }}/{{ node_exporter_app }}-{{ node_exporter_version }}.{{ node_exporter_osarch }}.{{ node_exporter_archive_format }}"
@@ -60,7 +60,7 @@ node_exporter_app_check_status_code_delay: 5
 Variable                                           | Description
 -------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------
 node_exporter_app                                  | Defines the app to install i.e. **node_exporter**
-node_exporter_version                              | Defined to dynamically fetch the desired version to install. Defaults to: **1.0.1**
+node_exporter_version                              | Defined to dynamically fetch the desired version to install. Defaults to: **1.5.0**
 node_exporter_osarch                               | Defines os architecture. Used for obtaining the correct type of binaries based on OS System Architecture. Defaults to: **linux-amd64**
 node_exporter_archive_format                       | Defined to use while downloading the archive.
 node_exporter_dl_url                               | Defines URL to download the node_exporter binary from.
